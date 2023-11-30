@@ -20,7 +20,9 @@ public class Negozio {
 	public void elencaProdotti() {
 		for(Integer n:elencoProdotti.keySet())
 		{
-			System.out.println(n+" "+ elencoProdotti.get(n).getCodiceProdotto()+" "+elencoProdotti.get(n).getDescrizione()+" "+ elencoProdotti.get(n).getPrezzo());
+			System.out.print(n+" "+ elencoProdotti.get(n).getCodiceProdotto());
+			System.out.print(" "+elencoProdotti.get(n).getDescrizione());
+			System.out.print(" "+ elencoProdotti.get(n).getPrezzo());
 		}
 			
 	}
