@@ -16,12 +16,7 @@ public class Prodotto {
 		quantitaDisponibile=10;
 		sconto=0;
 	}
-	public void scalaDisponibilita() {
-		if(quantitaDisponibile>0)
-			quantitaDisponibile-=1;
-		else
-			System.out.println("Disponibilita terminate");
-	}
+	
 	
 	public float getSconto() {
 		return sconto;
