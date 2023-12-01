@@ -1,6 +1,5 @@
 package org.generation.italy;
 
-import java.util.HashMap;
 
 public class Prodotto {
 	

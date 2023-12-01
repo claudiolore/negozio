@@ -13,8 +13,11 @@ public class Main {
 		float prezzo, scontoDaApplicare;
  
 	System.out.println("\tBENVENUTO");
-	System.out.println("\nSei un cliente(1) o dipendente(2)?");
+	
+	System.out.println("\nInserisci USERNAME");
 	risposta=sc.nextLine();
+	sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+	
 	
 							///////////////////////////   CLIENTE   ///////////////////////////////////////////////
 	if(risposta.equalsIgnoreCase("1"))
@@ -126,7 +129,7 @@ public class Main {
 	
 	
 	
-	
+	System.out.println("\n\nSno qui");
 	sc.close();
 }
 }
