@@ -12,19 +12,26 @@ public class Negozio {
 		elencoProdotti.put(4, new Prodotto("jeans","JE002",35.0f));
 
 	}
-
-	public void aggiungiProdotto() {
-		
+	
+	public void aggiungiProdotto(String descrizione,String codiceProdotto, float prezzo) {
+		elencoProdotti.put(elencoProdotti.size()+1, new Prodotto(descrizione, codiceProdotto, prezzo));
+	}
+	
+	public void applicaSconto(Integer sceltaProdotto, float sconto) {
+		elencoProdotti.get(sceltaProdotto).setSconto(sconto);
 	}
 
+	public void vendiProdotto(Integer sceltaProdotto) {
+		elencoProdotti.get(sceltaProdotto).scalaDisponibilita();;
+	}
+	
 	public void elencaProdotti() {
 		for(Integer n:elencoProdotti.keySet())
 		{
 			System.out.print(n+" "+ elencoProdotti.get(n).getCodiceProdotto());
 			System.out.print(" "+elencoProdotti.get(n).getDescrizione());
-			System.out.print(" "+ elencoProdotti.get(n).getPrezzo());
-		}
-			
+			System.out.println(" "+ elencoProdotti.get(n).getPrezzo());
+		}	
 	}
 	
 	public HashMap<Integer, Prodotto> getElencoProdotti() {
