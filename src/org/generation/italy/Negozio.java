@@ -7,6 +7,8 @@ public class Negozio {
 	private HashMap<Integer,Prodotto> carrello =new HashMap<>();
 	private HashMap<Integer,Cliente> elencoClienti=new HashMap<>();
 	
+
+
 	public Negozio() {
 		elencoProdotti.put(1, new Prodotto("JEANS ANNA PEPE","JE001",30.0f));
 		elencoProdotti.put(2, new Prodotto("T-SHIRT ANNA PEPE","TS001",15.5f));
@@ -20,20 +22,18 @@ public class Negozio {
 		elencoClienti.put(3, new Cliente("padreeterno", "amen","dio", "dio", "cliente"));
 	}
 
-	public void controlloUsername() {
-		
-	}
-	
-	public void controlloPassword() {
-		
-	}
-	
 	
 	
 	public void aggiungiAlCarrello(Integer prodottoDaAggiungere) {
 		
 		carrello.put(carrello.size()+1, elencoProdotti.get(prodottoDaAggiungere));
+		//aggiungere quantita e classe carrello
 
+	}
+	
+	public void compra(Integer sceltaProdotto, Integer quantita) {
+		int n=elencoProdotti.get(sceltaProdotto).getQuantitaDisponibile();
+		elencoProdotti.get(sceltaProdotto).setQuantitaDisponibile(n-quantita);
 	}
 	
 	public void elencaCarrello() {
@@ -94,4 +94,21 @@ public class Negozio {
 	public void setElencoProdotti(HashMap<Integer, Prodotto> elencoProdotti) {
 		this.elencoProdotti = elencoProdotti;
 	}
+	
+	public HashMap<Integer, Prodotto> getCarrello() {
+		return carrello;
+	}
+
+	public void setCarrello(HashMap<Integer, Prodotto> carrello) {
+		this.carrello = carrello;
+	}
+
+	public HashMap<Integer, Cliente> getElencoClienti() {
+		return elencoClienti;
+	}
+
+	public void setElencoClienti(HashMap<Integer, Cliente> elencoClienti) {
+		this.elencoClienti = elencoClienti;
+	}
+
 }

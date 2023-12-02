@@ -1,16 +1,25 @@
 package org.generation.italy;
 
+import java.util.HashMap;
+
 public class Cliente {
 	private String username, password, nome, cognome, tipologia;
-
+	
+	
 	public Cliente(String username, String password, String nome, String cognome, String tipologia) {
-		
 		this.username = username;
 		this.password = password;
 		this.nome = nome;
 		this.cognome = cognome;
 		this.tipologia = tipologia;
+		
 	}
+	
+/*	public void controllo(String username) {
+		if(this.username==username)
+			System.out.println("esiste");
+		else
+			System.out.println("non esiste");		}				*/
 
 	
 	public String getUsername() {
