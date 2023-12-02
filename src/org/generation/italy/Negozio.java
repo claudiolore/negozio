@@ -4,16 +4,15 @@ import java.util.HashMap;
 
 public class Negozio {
 	private HashMap<Integer,Prodotto> elencoProdotti=new HashMap<>();
-	private HashMap<Integer,Prodotto> carrello =new HashMap<>();
 	private HashMap<Integer,Cliente> elencoClienti=new HashMap<>();
-	
-
+	private HashMap<Integer,Prodotto> carrello =new HashMap<>();
+	private HashMap<Cliente,Prodotto> carrello1 =new HashMap<>();
 
 	public Negozio() {
-		elencoProdotti.put(1, new Prodotto("JEANS ANNA PEPE","JE001",30.0f));
-		elencoProdotti.put(2, new Prodotto("T-SHIRT ANNA PEPE","TS001",15.5f));
-		elencoProdotti.put(3, new Prodotto("SCARPE ANNA PEPE","SC001",70.0f));
-		elencoProdotti.put(4, new Prodotto("JEANS RAY MISTIRIO","JE002",35.0f));
+		elencoProdotti.put(1, new Prodotto("JEANS","JE001",30.0f));
+		elencoProdotti.put(2, new Prodotto("T-SHIRT","TS001",15.5f));
+		elencoProdotti.put(3, new Prodotto("SCARPE","SC001",70.0f));
+		elencoProdotti.put(4, new Prodotto("JEANS","JE002",35.0f));
 	}
 	
 	public Negozio(HashMap<Integer, Cliente> elencoClienti) {
@@ -27,6 +26,8 @@ public class Negozio {
 	public void aggiungiAlCarrello(Integer prodottoDaAggiungere) {
 		
 		carrello.put(carrello.size()+1, elencoProdotti.get(prodottoDaAggiungere));
+		
+		
 		//aggiungere quantita e classe carrello
 
 	}
