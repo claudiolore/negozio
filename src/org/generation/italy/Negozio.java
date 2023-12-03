@@ -6,7 +6,7 @@ public class Negozio {
 	private HashMap<Integer,Prodotto> elencoProdotti=new HashMap<>();
 	private HashMap<Integer,Cliente> elencoClienti=new HashMap<>();
 	private HashMap<Integer,Prodotto> carrello =new HashMap<>();
-	private HashMap<Cliente,Prodotto> carrello1 =new HashMap<>();
+
 
 	public Negozio() {
 		elencoProdotti.put(1, new Prodotto("JEANS","JE001",30.0f));
@@ -21,16 +21,13 @@ public class Negozio {
 		elencoClienti.put(3, new Cliente("padreeterno", "amen","dio", "dio", "cliente"));
 	}
 
-	
-	
 	public void aggiungiAlCarrello(Integer prodottoDaAggiungere) {
-		
-		carrello.put(carrello.size()+1, elencoProdotti.get(prodottoDaAggiungere));
-		
-		
-		//aggiungere quantita e classe carrello
-
-	}
+	if(elencoProdotti.containsKey(prodottoDaAggiungere)&& elencoProdotti.get(prodottoDaAggiungere).getQuantitaDisponibile()>0)	
+		carrello.put(carrello.size()+1, elencoProdotti.get(prodottoDaAggiungere));	
+	else
+		System.out.println("\nProdotto terminato");
+	
+	}	
 	
 	public void compra(Integer sceltaProdotto, Integer quantita) {
 		int n=elencoProdotti.get(sceltaProdotto).getQuantitaDisponibile();

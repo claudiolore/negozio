@@ -13,12 +13,10 @@ public class Main {
 		float prezzo, scontoDaApplicare;
 		boolean f2a=false;
 	
-/*	CONDIZIONE PER METODI
+/*	
  	CLASSE CARRELLO E CLIENTE
  	SVUOTA CARRELLO
- 	SISTEMARE IL COMPRA?
  	LOGIN ACCESSO CLIENTE DIPENDENTE
- 	
  */
 		
 		
@@ -46,6 +44,8 @@ public class Main {
 				    System.out.println("\nQuanti?");
 				    int quantita=Integer.parseInt(sc.nextLine());
 				    negozio.aggiungiAlCarrello(sceltaProdotto);
+				    System.out.println("\nCarrello: ");
+				    negozio.elencaCarrello();
 				    System.out.println("\nVuoi completare il pagamento?");
 				    risposta=sc.nextLine();
 				    if(risposta.equals("si"))
@@ -56,17 +56,13 @@ public class Main {
 				    }
 				    else if(risposta.equals("no"))
 				    {
-				    	System.out.println("\nVuoi comprare altro?");
-				    	//IF SI NO VALORE NON VALIDO DA AGGIUNGERE
+				    	break;
 				    	
 				    }
 				    else
 				    {
-				    	//VALORE NON VALIDO DA AGGIUNGERE
-				    }
-				    
-				    
-				    
+				    	System.out.println("\nInserimento non valido, riprova");
+				    }  
 				}
 				else if(risposta.equalsIgnoreCase("2"))					//VISUALIZZA CARRELLO
 				{

@@ -30,7 +30,8 @@ public class Prodotto {
 	}
 
 	public void setPrezzo(float prezzo) {
-		this.prezzo = prezzo;
+		if(prezzo>0)
+			this.prezzo = prezzo;
 	}
 
 	public int getQuantitaDisponibile() {
@@ -38,7 +39,8 @@ public class Prodotto {
 	}
 
 	public void setQuantitaDisponibile(int quantitaDisponibile) {
-		this.quantitaDisponibile = quantitaDisponibile;
+		if(quantitaDisponibile>0)
+			this.quantitaDisponibile = quantitaDisponibile;
 	}
 
 	public String getDescrizione() {
@@ -54,7 +56,7 @@ public class Prodotto {
 	}
 
 	public void setCodiceProdotto(String codiceProdotto) {
-		this.codiceProdotto = codiceProdotto;
+			this.codiceProdotto = codiceProdotto;
 	} 
 	
 	

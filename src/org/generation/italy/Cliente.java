@@ -15,13 +15,7 @@ public class Cliente {
 		
 	}
 	
-/*	public void controllo(String username) {
-		if(this.username==username)
-			System.out.println("esiste");
-		else
-			System.out.println("non esiste");		}				*/
 
-	
 	public String getUsername() {
 		return username;
 	}
