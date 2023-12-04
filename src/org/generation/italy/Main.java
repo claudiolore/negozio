@@ -144,20 +144,28 @@ public class Main {
 				}
 				else if (risposta.equals("2"))							//APPLICA SCONTO
 				{
-					negozio.elencaProdotti();
-					System.out.println("\nQuale prodotto vuoi scontare?");
-				    String codice=sc.nextLine();
-				    if(negozio.getElencoProdotti().containsKey(sceltaProdotto))
-				    {
-				    	System.out.println("\nDi quanto lo vuoi scontare? (percentuale)");
-				    	scontoDaApplicare=Float.parseFloat(sc.nextLine());
-				    	negozio.applicaSconto(codice,scontoDaApplicare);
-				    	negozio.elencaProdotti();
-				    }
-				    else 
-				    {
-				    	System.out.println("prodotto non disponibile");
-				    }
+					do {
+						negozio.elencaProdotti();
+						System.out.println("\nQuale prodotto vuoi scontare?");
+					    String codice=sc.nextLine();
+					    System.out.println("\nQuanto lo vuoi scontare?");
+					    scontoDaApplicare=Integer.parseInt(sc.nextLine());
+					    if(negozio.getElencoProdotti().containsKey(sceltaProdotto))
+					    {
+					    	System.out.println("\nDi quanto lo vuoi scontare? (percentuale)");
+					    	scontoDaApplicare=Float.parseFloat(sc.nextLine());
+					    	negozio.applicaSconto(codice,scontoDaApplicare);
+					    	negozio.elencaProdotti();
+					    }
+					    else 
+					    {
+					    	System.out.println("\nProdotto non esistentte");
+					    	risposta="si";
+					    	continue;
+					    }
+					    System.out.println("\nVuoi Scontare altro?");
+					}
+					while(risposta.equalsIgnoreCase("si"));
 				}
 				else if (risposta.equals("3"))								//CONTROLLO DISPONIBILITA
 				{

@@ -68,11 +68,14 @@ public class Negozio {
 		return esito;
 		}
 	
-	public void applicaSconto(String codice, float scontoScelto) {
+	public boolean applicaSconto(String codice, float scontoScelto) {
+		boolean esito=false;
 		if(elencoProdotti.containsKey(codice))
 			{
 				elencoProdotti.get(codice).setSconto(scontoScelto);
+				esito=true;
 			}
+		return esito;
 	}
 	
 	public void controlloQuantita(String sceltaProdotto) {
