@@ -21,8 +21,15 @@ public class Prodotto {
 		return sconto;
 	}
 
-	public void setSconto(float sconto) {
-		this.sconto = sconto;
+	public boolean setSconto(float sconto) {
+	boolean esito=false;
+		if(sconto>0&&sconto<100)
+		{
+			this.sconto = sconto;
+			esito=true;
+		}
+		return esito;
+			
 	}
 
 	public float getPrezzo() {
