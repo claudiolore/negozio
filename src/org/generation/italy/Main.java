@@ -10,7 +10,7 @@ public class Main {
 		Negozio negozio =new Negozio();
 		String risposta="",sceltaProdotto="";
 		int  quantitaScelta, tipoUtente=-1;
-		float prezzo, scontoDaApplicare;
+		float scontoDaApplicare;
 		boolean ripeti=true;
 				
 	do {	
@@ -22,11 +22,9 @@ public class Main {
 				Cliente clienteAutenticato= null;
 				for(Cliente cliente:negozio.getElencoClienti())
 				{
-					System.out.println("for");
 					if(cliente.getUsername().equalsIgnoreCase(usernameIn))
 					{
 						clienteAutenticato=cliente;
-						System.out.println("ok user");
 					}
 				}
 				System.out.println("\nInserisci PASSWORD");
@@ -127,7 +125,7 @@ public class Main {
 				System.out.println("4 - Carica prodotti");
 				System.out.println("5 - Esci");
 				System.out.println("\nCosa vuoi fare?");
-				
+				risposta=sc.nextLine();
 				if(risposta.equals("1"))										//AGGIUNGI PRODOTTO
 				{
 					do {

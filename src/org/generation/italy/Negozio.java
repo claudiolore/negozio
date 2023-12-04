@@ -9,7 +9,7 @@ public class Negozio {
 	
 	Carrello carrello=new Carrello();
 
-	public Negozio() {
+/*	public Negozio() {
 		Prodotto p1=new Prodotto("JEANS","JE001",30.0f);
 		Prodotto p2=new Prodotto("T-SHIRT","TS001",15.5f);
 		Prodotto p3=new Prodotto("SCARPE","SC001",70.0f);
@@ -25,7 +25,23 @@ public class Negozio {
 		elencoClienti.add(new Cliente("zioadolf", "razzapura","adolf", "hitler", "dipendente"));
 		elencoClienti.add(new Cliente("padreeterno", "amen","dio", "dio", "cliente"));
 	}
+*/
+	public Negozio() {
+		Prodotto p1=new Prodotto("JEANS","JE001",30.0f);
+		Prodotto p2=new Prodotto("T-SHIRT","TS001",15.5f);
+		Prodotto p3=new Prodotto("SCARPE","SC001",70.0f);
+		Prodotto p4=new Prodotto("JEANS","JE002",35.0f);
+		elencoProdotti.put(p1.getCodiceProdotto(), p1);
+		elencoProdotti.put(p2.getCodiceProdotto(), p2);
+		elencoProdotti.put(p3.getCodiceProdotto(), p3);
+		elencoProdotti.put(p4.getCodiceProdotto(), p4);
 
+		this.elencoClienti.add(new Cliente("bendux39", "vincerevinceremo","benito", "mussolini", "cliente"));
+		this.elencoClienti.add(new Cliente("zioadolf", "razzapura","adolf", "hitler", "dipendente"));
+		this.elencoClienti.add(new Cliente("padreeterno", "amen","dio", "dio", "cliente"));
+	}
+	
+	
 	public void aggiungiAlCarrello(String codice, int quantita) {
 		if(elencoProdotti.containsKey(codice)&& elencoProdotti.get(codice).getQuantitaDisponibile()>=quantita)	
 		{
@@ -100,6 +116,7 @@ public class Negozio {
 			{
 				System.out.print("   "+elencoProdotti.get(n).getSconto()+ "%");
 			}
+			System.out.println("\n");
 		}
 			
 	}
@@ -112,13 +129,21 @@ public class Negozio {
 		this.elencoProdotti = elencoProdotti;
 	}
 
-	public ArrayList<Cliente> getElencoClienti() {
+/*	public ArrayList<Cliente> getElencoClienti() {
 		return elencoClienti;
 	}
 
 	public void setElencoClienti(ArrayList<Cliente> elencoClienti) {
 		this.elencoClienti = elencoClienti;
 	}
+*/
+	
+	public ArrayList<Cliente> getElencoClienti() {
+		return this.elencoClienti;
+	}
 
+	public void setElencoClienti(ArrayList<Cliente> elencoClienti) {
+		this.elencoClienti = elencoClienti;
+	}
 
 }
