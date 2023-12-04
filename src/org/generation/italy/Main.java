@@ -18,7 +18,7 @@ public class Main {
 			System.out.println("\tBENVENUTO");
 			System.out.println("\nInserisci USERNAME");
 			String usernameIn=sc.nextLine();
-			System.out.println("\nInserisci password");
+			System.out.println("\nInserisci PASSWORD");
 			String passwordIn=sc.nextLine();
 			
 			Cliente clienteAutenticato= null; 
@@ -35,7 +35,7 @@ public class Main {
 			if(clienteAutenticato!=null)
 			{
 				System.out.println("Benvenuto "+clienteAutenticato.getNome() +
-										" "+clienteAutenticato.getCognome()+
+										" "+clienteAutenticato.getCognome()  +
 										"-"+clienteAutenticato.getTipologia());
 				if(clienteAutenticato.getTipologia().equalsIgnoreCase("cliente"))
 					tipoUtente=1;
@@ -96,11 +96,14 @@ public class Main {
 				}
 				else if(risposta.equalsIgnoreCase("3"))					//ESCI
 				{
-					break;																				//controllare
+					risposta="si";
+					continue;																			
 				}
 				else
 				{
 					System.out.println("\nInserimento non valido, riprova");
+					risposta="si";
+					continue;
 				}
 				System.out.println("\nVuoi comprare altro(si/no)?");
 				risposta=sc.nextLine();
@@ -117,28 +120,38 @@ public class Main {
 				System.out.println("5 - Esci");
 				System.out.println("\nCosa vuoi fare?");
 				
-				if(risposta.equals("1"))			//AGGIUNGI PRODOTTO
+				if(risposta.equals("1"))							//AGGIUNGI PRODOTTO
 				{
-					System.out.println("\nQuale prodotto vuoi aggiungere? (nome prodotto)");
-					String nuovoDescrizione =sc.nextLine().toUpperCase();
-					System.out.println("\nInserisci: (codice prodotto)");
-					String nuovoCodice =sc.nextLine().toUpperCase();
-					System.out.println("\nInserisci: (prezzo prodotto)");
-					float nuovoPrezzo = Float.parseFloat(sc.nextLine());
-					negozio.aggiungiProdotto(nuovoDescrizione, nuovoCodice, nuovoPrezzo);
-					System.out.println("Prodotto aggiunto");
-					negozio.elencaProdotti();
+					do {
+						System.out.println("\nQuale prodotto vuoi aggiungere? (nome prodotto)");
+						String nuovoDescrizione =sc.nextLine().toUpperCase();
+						System.out.println("\nInserisci: (codice prodotto)");
+						String nuovoCodice =sc.nextLine().toUpperCase();
+						System.out.println("\nInserisci: (prezzo prodotto)");
+						float nuovoPrezzo = Float.parseFloat(sc.nextLine());
+						if(!negozio.aggiungiProdotto(new Prodotto(nuovoCodice, nuovoDescrizione, nuovoPrezzo)))
+						{
+							System.out.println("Codice gio esistente, riprova");
+							break;
+						}
+						System.out.println("Prodotto aggiunto");
+						negozio.elencaProdotti();
+						System.out.println("\nVuoi aggiungere altro (si/no)?");
+						risposta=sc.nextLine();
+					}
+					while(risposta.equalsIgnoreCase("si"));
+				
 				}
 				else if (risposta.equals("2"))							//APPLICA SCONTO
 				{
 					negozio.elencaProdotti();
 					System.out.println("\nQuale prodotto vuoi scontare?");
-				    sceltaProdotto=sc.nextLine();
+				    String codice=sc.nextLine();
 				    if(negozio.getElencoProdotti().containsKey(sceltaProdotto))
 				    {
 				    	System.out.println("\nDi quanto lo vuoi scontare? (percentuale)");
 				    	scontoDaApplicare=Float.parseFloat(sc.nextLine());
-				    	negozio.applicaSconto(sceltaProdotto,scontoDaApplicare);
+				    	negozio.applicaSconto(codice,scontoDaApplicare);
 				    	negozio.elencaProdotti();
 				    }
 				    else 
@@ -155,25 +168,38 @@ public class Main {
 				}
 				else if (risposta.equals("4"))								//CARICA PRODOTTI
 				{
-					negozio.elencaProdotti();
-					System.out.println("\nQuale prodotto vuoi caricare?");
-					sceltaProdotto=sc.nextLine();
-					System.out.println("\nQuanti ne vuoi caricare?");
-					quantitaScelta=Integer.parseInt(sc.nextLine());
-					negozio.caricaProdotti(sceltaProdotto, quantitaScelta);
+					do {
+						System.out.println("\nQuale prodotto vuoi caricare? (codice prodotto)");
+						sceltaProdotto=sc.nextLine();
+						System.out.println("\nQuani ne vuoi aggiungere?");
+						quantitaScelta=Integer.parseInt(sc.nextLine());
+						if(negozio.carica(sceltaProdotto, quantitaScelta))
+						{
+							System.out.println("Prodotto inesistente");
+							break;
+						}
+						System.out.println("Prodotto caricato");
+						negozio.elencaProdotti();
+						System.out.println("\nVuoi aggiungere altro (si/no)?");
+						risposta=sc.nextLine();
+					}
+					while(risposta.equalsIgnoreCase("si"));
 				}
 				else if (risposta.equals("5"))								//ESCI
 				{
-					break;
+					risposta="si";
+					continue;
 				}
 				else
 				{
 				System.out.println("\nInserimento non valido, riprova");
+				risposta="si";
+				continue;
 				}
 			System.out.println("Vuoi fare altro?");
 			risposta=sc.nextLine();	
 			}
-			while(risposta.equalsIgnoreCase(risposta));
+			while(risposta.equalsIgnoreCase("si"));
 			
 		}
 		else 

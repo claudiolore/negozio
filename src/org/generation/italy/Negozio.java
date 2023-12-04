@@ -48,9 +48,31 @@ public class Negozio {
 		}
 	}
 
-	public void aggiungiProdotto(String descrizione, String codiceProdotto, float prezzo ) {
-		elencoProdotti.put(codiceProdotto, new Prodotto(descrizione, codiceProdotto,prezzo));
+	public boolean aggiungiProdotto(Prodotto prodotto) {
+		boolean esito= false;
+		if(!elencoProdotti.containsKey(prodotto.getCodiceProdotto()))
+		{
+			elencoProdotti.put(prodotto.getCodiceProdotto(), prodotto);
+			esito=true;
+		}
+		return esito;
+		}
 	
+	public boolean carica( String codice, int quantitaScelta) {
+		boolean esito= false;
+		if(!elencoProdotti.containsKey(codice))
+		{
+			elencoProdotti.get(codice).setQuantitaDisponibile(quantitaScelta);
+			esito=true;
+		}
+		return esito;
+		}
+	
+	public void applicaSconto(String codice, float scontoScelto) {
+		if(elencoProdotti.containsKey(codice))
+			{
+				elencoProdotti.get(codice).setSconto(scontoScelto);
+			}
 	}
 	
 	public void controlloQuantita(String sceltaProdotto) {
@@ -59,37 +81,25 @@ public class Negozio {
 			elencoProdotti.get(sceltaProdotto).getQuantitaDisponibile();
 		}
 	}
-
-	public void caricaProdotti(String sceltaProdotto, Integer quantitaScelta) {
-		if(elencoProdotti.containsKey(sceltaProdotto))
-		{
-			elencoProdotti.get(sceltaProdotto).setQuantitaDisponibile(quantitaScelta);
-		}
-	}
 	
 	public void elencaProdotti() {
 		for(String n:elencoProdotti.keySet())
 		{
 			System.out.print(n+" "+ elencoProdotti.get(n).getCodiceProdotto());
 			System.out.print("   "+elencoProdotti.get(n).getDescrizione());
-			System.out.println("   "+ elencoProdotti.get(n).getPrezzo()+ "€");
+			System.out.print("   "+ elencoProdotti.get(n).getPrezzo()+ "€");
+			if(elencoProdotti.get(n).getQuantitaDisponibile()>0)
+			{
+				System.out.print("   "+elencoProdotti.get(n).getSconto()+ " rimanenti");
+			}
 			if(elencoProdotti.get(n).getSconto()>0)
 			{
-				System.out.println(elencoProdotti.get(n).getSconto()+ "%");
+				System.out.print("   "+elencoProdotti.get(n).getSconto()+ "%");
 			}
 		}
 			
 	}
-	 public void applicaSconto(String sceltaProdotto, float scontoScelto) {
-		if(scontoScelto<90f && scontoScelto>5f)
-		{
-	    elencoProdotti.get(sceltaProdotto).setSconto(scontoScelto);
-		}
-		else 
-			System.out.println("sconto non applicabile");
-			
-	}
-	
+	 
 	public HashMap<String, Prodotto> getElencoProdotti() {
 		return elencoProdotti;
 	}
