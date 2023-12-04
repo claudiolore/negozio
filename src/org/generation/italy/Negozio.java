@@ -1,27 +1,32 @@
 package org.generation.italy;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Negozio {
-	private HashMap<Integer,Prodotto> elencoProdotti=new HashMap<>();
-	private HashMap<Integer,Cliente> elencoClienti=new HashMap<>();
+	private HashMap<String,Prodotto> elencoProdotti=new HashMap<>();
+	private ArrayList<Cliente> elencoClienti=new ArrayList<>();
 	private HashMap<Integer,Prodotto> carrello =new HashMap<>();
 
 
 	public Negozio() {
-		elencoProdotti.put(1, new Prodotto("JEANS","JE001",30.0f));
-		elencoProdotti.put(2, new Prodotto("T-SHIRT","TS001",15.5f));
-		elencoProdotti.put(3, new Prodotto("SCARPE","SC001",70.0f));
-		elencoProdotti.put(4, new Prodotto("JEANS","JE002",35.0f));
+		Prodotto p1=new Prodotto("JEANS","JE001",30.0f);
+		Prodotto p2=new Prodotto("T-SHIRT","TS001",15.5f);
+		Prodotto p3=new Prodotto("SCARPE","SC001",70.0f);
+		Prodotto p4=new Prodotto("JEANS","JE002",35.0f);
+		elencoProdotti.put(p1.getCodiceProdotto(), p1);
+		elencoProdotti.put(p2.getCodiceProdotto(), p2);
+		elencoProdotti.put(p3.getCodiceProdotto(), p3);
+		elencoProdotti.put(p4.getCodiceProdotto(), p4);
 	}
 	
-	public Negozio(HashMap<Integer, Cliente> elencoClienti) {
-		elencoClienti.put(1, new Cliente("bendux39", "vincerevinceremo","benito", "mussolini", "cliente"));
-		elencoClienti.put(2, new Cliente("zioadolf", "razzapura","adolf", "hitler", "dipendente"));
-		elencoClienti.put(3, new Cliente("padreeterno", "amen","dio", "dio", "cliente"));
+	public Negozio(ArrayList<Cliente> elencoClienti) {
+		elencoClienti.add(new Cliente("bendux39", "vincerevinceremo","benito", "mussolini", "cliente"));
+		elencoClienti.add(new Cliente("zioadolf", "razzapura","adolf", "hitler", "dipendente"));
+		elencoClienti.add(new Cliente("padreeterno", "amen","dio", "dio", "cliente"));
 	}
 
-	public void aggiungiAlCarrello(Integer prodottoDaAggiungere) {
+	public void aggiungiAlCarrello(String prodottoDaAggiungere) {
 	if(elencoProdotti.containsKey(prodottoDaAggiungere)&& elencoProdotti.get(prodottoDaAggiungere).getQuantitaDisponibile()>0)	
 		carrello.put(carrello.size()+1, elencoProdotti.get(prodottoDaAggiungere));	
 	else
@@ -29,7 +34,7 @@ public class Negozio {
 	
 	}	
 	
-	public void compra(Integer sceltaProdotto, Integer quantita) {
+	public void compra(String sceltaProdotto, Integer quantita) {
 		int n=elencoProdotti.get(sceltaProdotto).getQuantitaDisponibile();
 		elencoProdotti.get(sceltaProdotto).setQuantitaDisponibile(n-quantita);
 	}
@@ -44,18 +49,18 @@ public class Negozio {
 	}
 
 	public void aggiungiProdotto(String descrizione, String codiceProdotto, float prezzo ) {
-		elencoProdotti.put(elencoProdotti.size()+1, new Prodotto(descrizione, codiceProdotto,prezzo));
+		elencoProdotti.put(codiceProdotto, new Prodotto(descrizione, codiceProdotto,prezzo));
 	
 	}
 	
-	public void controlloQuantita(Integer sceltaProdotto) {
+	public void controlloQuantita(String sceltaProdotto) {
 		if(elencoProdotti.containsKey(sceltaProdotto))
 		{
 			elencoProdotti.get(sceltaProdotto).getQuantitaDisponibile();
 		}
 	}
 
-	public void caricaProdotti(Integer sceltaProdotto, Integer quantitaScelta) {
+	public void caricaProdotti(String sceltaProdotto, Integer quantitaScelta) {
 		if(elencoProdotti.containsKey(sceltaProdotto))
 		{
 			elencoProdotti.get(sceltaProdotto).setQuantitaDisponibile(quantitaScelta);
@@ -63,7 +68,7 @@ public class Negozio {
 	}
 	
 	public void elencaProdotti() {
-		for(Integer n:elencoProdotti.keySet())
+		for(String n:elencoProdotti.keySet())
 		{
 			System.out.print(n+" "+ elencoProdotti.get(n).getCodiceProdotto());
 			System.out.print("   "+elencoProdotti.get(n).getDescrizione());
@@ -75,7 +80,7 @@ public class Negozio {
 		}
 			
 	}
-	 public void applicaSconto(Integer sceltaProdotto, float scontoScelto) {
+	 public void applicaSconto(String sceltaProdotto, float scontoScelto) {
 		if(scontoScelto<90f && scontoScelto>5f)
 		{
 	    elencoProdotti.get(sceltaProdotto).setSconto(scontoScelto);
@@ -85,11 +90,11 @@ public class Negozio {
 			
 	}
 	
-	public HashMap<Integer, Prodotto> getElencoProdotti() {
+	public HashMap<String, Prodotto> getElencoProdotti() {
 		return elencoProdotti;
 	}
 	
-	public void setElencoProdotti(HashMap<Integer, Prodotto> elencoProdotti) {
+	public void setElencoProdotti(HashMap<String, Prodotto> elencoProdotti) {
 		this.elencoProdotti = elencoProdotti;
 	}
 	
@@ -101,12 +106,13 @@ public class Negozio {
 		this.carrello = carrello;
 	}
 
-	public HashMap<Integer, Cliente> getElencoClienti() {
+	public ArrayList<Cliente> getElencoClienti() {
 		return elencoClienti;
 	}
 
-	public void setElencoClienti(HashMap<Integer, Cliente> elencoClienti) {
+	public void setElencoClienti(ArrayList<Cliente> elencoClienti) {
 		this.elencoClienti = elencoClienti;
 	}
+
 
 }

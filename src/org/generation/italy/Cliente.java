@@ -1,6 +1,5 @@
 package org.generation.italy;
 
-import java.util.HashMap;
 
 public class Cliente {
 	private String username, password, nome, cognome, tipologia;

@@ -8,27 +8,52 @@ public class Main {
 		// TODO Auto-generated method stub	
 		Scanner sc = new Scanner(System.in);
 		Negozio negozio =new Negozio();
-		String risposta="";
-		int sceltaProdotto, quantitaScelta;
+		String risposta="",sceltaProdotto;
+		int  quantitaScelta, tipoUtente;
 		float prezzo, scontoDaApplicare;
-		boolean f2a=false;
-	
-/*	
- 	CLASSE CARRELLO E CLIENTE
- 	SVUOTA CARRELLO
- 	LOGIN ACCESSO CLIENTE DIPENDENTE
- */
+		boolean ripeti=true;
+				
+	do {	
+		do {	
+			System.out.println("\tBENVENUTO");
+			System.out.println("\nInserisci USERNAME");
+			String usernameIn=sc.nextLine();
+			System.out.println("\nInserisci password");
+			String passwordIn=sc.nextLine();
+			
+			Cliente clienteAutenticato= null; 
+			
+			for(Cliente cliente:elencoClienti)
+			{
+				if(cliente.getUsername().equals(usernameIn) && cliente.getPassword().equals(passwordIn))
+				{
+					clienteAutenticato=cliente;
+					break;
+				}
+			}
+			
+			if(clienteAutenticato!=null)
+			{
+				System.out.println("Benvenuto "+clienteAutenticato.getNome() +
+										" "+clienteAutenticato.getCognome()+
+										"-"+clienteAutenticato.getTipologia());
+				if(clienteAutenticato.getTipologia().equalsIgnoreCase("cliente"))
+					tipoUtente=1;
+				else
+					tipoUtente=2;
+				
+				ripeti=false;
+			}
+			else
+			{
+				System.out.println("\nUsername e/o password errati");
+			}
+		}
+		while(ripeti==true);
 		
-		
-	
-		
-		
-	do {		
-		System.out.println("\tBENVENUTO");
-		System.out.println("\nSei cliente(1) o dipendente(2)");
-		risposta=sc.nextLine();
-								///////////////////////////   CLIENTE   ///////////////////////////////////////////////
-		if(risposta.equalsIgnoreCase("1"))
+												
+												///////////////////////////   CLIENTE   ///////////////////////////////////////////////
+		if(tipoUtente==1)
 		{
 			do {
 				System.out.println("\n1 - Compra");
@@ -40,7 +65,7 @@ public class Main {
 				{
 					negozio.elencaProdotti();
 					System.out.println("\nQuale prodotto vuoi aggiungere al carrello? (indice)");
-				    sceltaProdotto=Integer.parseInt(sc.nextLine());
+				    sceltaProdotto=sc.nextLine();
 				    System.out.println("\nQuanti?");
 				    int quantita=Integer.parseInt(sc.nextLine());
 				    negozio.aggiungiAlCarrello(sceltaProdotto);
@@ -82,7 +107,7 @@ public class Main {
 			}
 			while(risposta.equalsIgnoreCase("si"));
 		}
-		else if(risposta.equalsIgnoreCase("2"))	///////////////////   DIPENDENTE    //////////////////////////////////////////
+		else if(tipoUtente==2)	///////////////////   DIPENDENTE    //////////////////////////////////////////
 		{
 			do {	
 				System.out.println("\n1 - Aggiungi prodotto");
@@ -108,7 +133,7 @@ public class Main {
 				{
 					negozio.elencaProdotti();
 					System.out.println("\nQuale prodotto vuoi scontare?");
-				    sceltaProdotto=Integer.parseInt(sc.nextLine());
+				    sceltaProdotto=sc.nextLine();
 				    if(negozio.getElencoProdotti().containsKey(sceltaProdotto))
 				    {
 				    	System.out.println("\nDi quanto lo vuoi scontare? (percentuale)");
@@ -125,14 +150,14 @@ public class Main {
 				{
 					negozio.elencaProdotti();
 					System.out.println("\nDi quale prodotto vuoi controllare la quantita?");
-					sceltaProdotto=Integer.parseInt(sc.nextLine());
+					sceltaProdotto=sc.nextLine();
 					negozio.controlloQuantita(sceltaProdotto);
 				}
 				else if (risposta.equals("4"))								//CARICA PRODOTTI
 				{
 					negozio.elencaProdotti();
 					System.out.println("\nQuale prodotto vuoi caricare?");
-					sceltaProdotto=Integer.parseInt(sc.nextLine());
+					sceltaProdotto=sc.nextLine();
 					System.out.println("\nQuanti ne vuoi caricare?");
 					quantitaScelta=Integer.parseInt(sc.nextLine());
 					negozio.caricaProdotti(sceltaProdotto, quantitaScelta);
